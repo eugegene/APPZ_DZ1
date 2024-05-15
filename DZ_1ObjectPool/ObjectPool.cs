@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +10,7 @@ namespace DZ1_ObjectPool
     {
         private List<PooledObject> pool;
         private int maxSize;
+        public int getMaxSize() {  return maxSize; }
 
         public ObjectPool(int maxSize)
         {
@@ -24,22 +25,15 @@ namespace DZ1_ObjectPool
             {
                 PooledObject obj = pool[0];
                 pool.RemoveAt(0);
-                Console.WriteLine("Об'єкт отримано з пулу. Розмір пулу: " + pool.Count);
+                Console.WriteLine($"Об'єкт отримано з пулу. Кількість об'єктів в пулі: {pool.Count}");
                 return obj;
             }
             else
             {
-                if (pool.Count < maxSize)
-                {
-                    PooledObject newObj = new PooledObject();
-                    Console.WriteLine("Створено новий об'єкт. Розмір пулу: " + pool.Count);
-                    return newObj;
-                }
-                else
-                {
-                    Console.WriteLine("Пул заповнено. Неможливо створити нові об'єкти.");
-                    return null;
-                }
+                PooledObject newObj = new PooledObject();
+                maxSize++;
+                Console.WriteLine($"Створено новий об'єкт. Розмір пулу збільшено. Кількість об'єктів в пулі: {pool.Count}");
+                return newObj;
             }
         }
 
@@ -48,11 +42,11 @@ namespace DZ1_ObjectPool
             if (pool.Count < maxSize) 
             {
                 pool.Add(obj);
-                Console.WriteLine("Об'єкт повернено до пулу. Розмір пулу: " + pool.Count);
+                Console.WriteLine($"Об'єкт {obj.ID} повернено до пулу. Кількість об'єктів в пулі: {pool.Count}");
             }
             else
             {
-                Console.WriteLine("Пул заповнено. Непомжливо додати більше об'єктів");
+                Console.WriteLine("Пул заповнено. Неможливо повернути більше об'єктів");
             }
         }
 
