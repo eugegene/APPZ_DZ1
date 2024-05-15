@@ -10,10 +10,10 @@
 *	Створення;
 *	Перевірка;
 *	Знищення.
-*	
-![image](https://github.com/eugegene/APPZ_DZ1/assets/148196803/df603edc-00f2-4ac9-a425-0dd9d4a6b81d)
 
 ### Для шаблону ObjectPool була створена Mermaid діаграма (див. рисунок 1):
+
+![image](https://github.com/eugegene/APPZ_DZ1/assets/148196803/df603edc-00f2-4ac9-a425-0dd9d4a6b81d)
 
 ### Елементи шаблону:
 Клієнт: це клас, який використовує об’єкт з пулу.
