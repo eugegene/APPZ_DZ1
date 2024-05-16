@@ -24,7 +24,7 @@ namespace DZ1_Bridge
     }
 
     // Concrete implementor
-    class Draw1 : IDraw
+    class DrawBlueTriangle : IDraw
     {
         public void DrawTriangle(int a, int b, int c) 
         {
@@ -33,7 +33,7 @@ namespace DZ1_Bridge
     }
 
     // Concrete implementor
-    class Draw2 : IDraw
+    class DrawGreenTriangle : IDraw
     {
         public void DrawTriangle(int a, int b, int c) 
         {

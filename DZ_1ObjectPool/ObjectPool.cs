@@ -25,7 +25,7 @@ namespace DZ1_ObjectPool
             {
                 PooledObject obj = pool[0];
                 pool.RemoveAt(0);
-                Console.WriteLine($"Об'єкт отримано з пулу. Кількість об'єктів в пулі: {pool.Count}");
+                Console.WriteLine($"Об'єкт {obj.ID} отримано з пулу. Кількість об'єктів в пулі: {pool.Count}");
                 return obj;
             }
             else

@@ -10,8 +10,8 @@ namespace DZ1_Bridge
             Console.InputEncoding = System.Text.Encoding.GetEncoding(1251);
             Console.OutputEncoding = System.Text.Encoding.GetEncoding(1251);
 
-            Shape blueTriangle = new Triangle(10, 10, 10, new Draw1());
-            Shape greenTriangle = new Triangle(8, 9, 10, new Draw2());
+            Shape blueTriangle = new Triangle(10, 10, 10, new DrawBlueTriangle());
+            Shape greenTriangle = new Triangle(8, 9, 10, new DrawGreenTriangle());
 
             blueTriangle.Draw();
             greenTriangle.Draw();
