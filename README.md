@@ -13,6 +13,7 @@
 
 ### Для шаблону ObjectPool була створена Mermaid діаграма:
 
+```mermaid
 classDiagram
     Client --|> ObjectPool
     Client --|> ReusablePool
@@ -27,6 +28,7 @@ classDiagram
     class ReusablePool{
       +doSomething
     }
+```
 
 ### Елементи шаблону:
 Клієнт: це клас, який використовує об’єкт з пулу.
