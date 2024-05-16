@@ -62,6 +62,7 @@ ObjectPool: клас Pool є найважливішим класом у шабл
 Абстракція містить посилання на реалізатор. Нащадки абстракції називаються уточненими абстракціями, а нащадки реалізатора – конкретними реалізаторами. Оскільки ми можемо змінювати посилання на реалізатор в абстракції, ми можемо змінювати реалізатор абстракції під час виконання програми. Зміни в реалізаторі не впливають на клієнтський код. Це збільшує вільний зв'язок між абстракцією класу та його реалізацією. [5]
 ### Для шаблону Bridge була створена Mermaid діаграма:
 
+```mermaid
 classDiagram   
     Abstraction --|> RefinedAbstraction
     Abstraction o-- Implementor
@@ -81,6 +82,7 @@ classDiagram
     class ConcreteImplementor{
       +implementation()
     }
+```
 
 ### Елементи шаблону:
 * Абстракція – ядро шаблону проєктування мосту, що визначає суть. Містить посилання на реалізатор.
@@ -116,6 +118,7 @@ Visitor дозволяє додавати нові віртуальні функ
 
 ### Для шаблону Visitor була створена Mermaid діаграма:
 
+```mermaid
 classDiagram
     Client ..> ConcreteVisitor
     ConcreteVisitor ..|> IVisitor
@@ -148,6 +151,7 @@ classDiagram
         + visit(e: ElementA)
         + visit(e: ElementB)
     }
+```
 
 ### Елементи шаблону:
 ### Відвідувач (зазвичай, абстрактний клас чи інтерфейс):
@@ -187,6 +191,7 @@ classDiagram
 
 ### Для шаблону Thread-Specific-Storage була створена Mermaid діаграма:
 
+```mermaid
 classDiagram
     ApplicationThread --|> TSObjectProxy
     TSObjectProxy --|> TSObjectCollection
@@ -206,7 +211,7 @@ classDiagram
         get_object(key)
         set_object(key)
     }
-
+```
 
 
 
