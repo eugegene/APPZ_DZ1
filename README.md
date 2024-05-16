@@ -11,9 +11,22 @@
 *	Перевірка;
 *	Знищення.
 
-### Для шаблону ObjectPool була створена Mermaid діаграма (див. рисунок 1):
+### Для шаблону ObjectPool була створена Mermaid діаграма:
 
-![image](https://github.com/eugegene/APPZ_DZ1/assets/148196803/df603edc-00f2-4ac9-a425-0dd9d4a6b81d)
+classDiagram
+    Client --|> ObjectPool
+    Client --|> ReusablePool
+    ObjectPool o-- ReusablePool
+    
+    class Client
+    
+    class ObjectPool{
+      +Instance : array
+      +get()
+    }
+    class ReusablePool{
+      +doSomething
+    }
 
 ### Елементи шаблону:
 Клієнт: це клас, який використовує об’єкт з пулу.
@@ -45,9 +58,27 @@ ObjectPool: клас Pool є найважливішим класом у шабл
 Шаблон Bridge дозволяє розробляти абстракцію та реалізацію незалежно, і клієнтський код може отримати доступ лише до частини абстракції, не турбуючись про частину реалізації.
 Абстракція – це інтерфейс, або абстрактний клас, а реалізатор – це також інтерфейс або абстрактний клас.
 Абстракція містить посилання на реалізатор. Нащадки абстракції називаються уточненими абстракціями, а нащадки реалізатора – конкретними реалізаторами. Оскільки ми можемо змінювати посилання на реалізатор в абстракції, ми можемо змінювати реалізатор абстракції під час виконання програми. Зміни в реалізаторі не впливають на клієнтський код. Це збільшує вільний зв'язок між абстракцією класу та його реалізацією. [5]
-### Для шаблону Bridge була створена Mermaid діаграма (див. рисунок 2):
+### Для шаблону Bridge була створена Mermaid діаграма:
 
-![image](https://github.com/eugegene/APPZ_DZ1/assets/148196803/4a522828-584f-44d2-921c-190e1dc84239)
+classDiagram   
+    Abstraction --|> RefinedAbstraction
+    Abstraction o-- Implementor
+    Implementor <|-- ConcreteImplementor
+
+    note for Abstraction "this.impl.implementation()"
+    class Abstraction{
+      -impl : Implementor
+      + function()
+    }
+    class RefinedAbstraction{
+      + refinedFunction()
+    }
+    class Implementor{
+      +implementation()
+    }
+    class ConcreteImplementor{
+      +implementation()
+    }
 
 ### Елементи шаблону:
 * Абстракція – ядро шаблону проєктування мосту, що визначає суть. Містить посилання на реалізатор.
@@ -81,9 +112,40 @@ Visitor дозволяє додавати нові віртуальні функ
 –	класи, які визначають структуру даних, змінюються рідко, але є потреба часто визначати нові операції над цією структурою. Якщо ж класи, які визначають структуру даних, змінюються часто, краще визначити операції в цих класах, адже при зміні інтерфейсів у класі даних необхідно змінювати і класи, які реалізують операції над цією структурою.
 –	треба визначити операцію над деякою структурою, не змінюючи клас цієї структури. [8]
 
-### Для шаблону Visitor була створена Mermaid діаграма (див. рисунок 3)
+### Для шаблону Visitor була створена Mermaid діаграма:
 
-![image](https://github.com/eugegene/APPZ_DZ1/assets/148196803/a31c8bd1-1430-4042-9499-a247329caa52)
+classDiagram
+    Client ..> ConcreteVisitor
+    ConcreteVisitor ..|> IVisitor
+    IVisitor ..> ConcreteElementA
+    IVisitor ..> ConcreteElementB
+    ConcreteElementA ..|> IElement
+    ConcreteElementB ..|> IElement
+    Client ..> IElement
+    IElement ..> IVisitor
+    class Client
+    
+    class IElement{
+        accept(v: Visitor)
+    }
+    class ConcreteElementA{
+        + featureA()
+        + accept(v: Visitor)
+    }
+        class ConcreteElementB{
+        + featureB()
+        + accept(v: Visitor)
+    }
+
+    class IVisitor{
+        + visit(e: ElementA)
+        + visit(e: ElementB)
+    }
+
+    class ConcreteVisitor{
+        + visit(e: ElementA)
+        + visit(e: ElementB)
+    }
 
 ### Елементи шаблону:
 ### Відвідувач (зазвичай, абстрактний клас чи інтерфейс):
@@ -121,10 +183,30 @@ Visitor дозволяє додавати нові віртуальні функ
 Іноді потрібно, щоб два потоки, що звертаються до якоїсь глобальної змінної, насправді звертались до різних місць в пам'яті, таким чином роблячи змінну локальною для потоку. [9]
 “Кожен потік матиме власну копію змінної” [10]
 
-### Для шаблону Thread-Specific-Storage була створена Mermaid діаграма 
-(див. рисунок 4):
+### Для шаблону Thread-Specific-Storage була створена Mermaid діаграма:
 
-![image](https://github.com/eugegene/APPZ_DZ1/assets/148196803/8f3016d7-3bc3-4fe7-9269-3cbf20a9ac68)
+classDiagram
+    ApplicationThread --|> TSObjectProxy
+    TSObjectProxy --|> TSObjectCollection
+    TSObjectCollection o--> TSObject
+
+
+    
+    class ApplicationThread
+    class TSObject
+    
+    class TSObjectProxy{
+        getspecific()
+        setspecific()
+        key
+    }
+    class TSObjectCollection{
+        get_object(key)
+        set_object(key)
+    }
+
+
+
 
 ### Елементи шаблону (за версією Google Gemini):
 * Application Thread – відповідяє за створення колекції об’єктів.
